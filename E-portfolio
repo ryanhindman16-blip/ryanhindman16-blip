@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio | MCS Analysis • Gameday Prep • Case Study • Videos</title>
+  <meta name="description" content="Student e-portfolio housing MCS analysis, gameday preparation plan, case study, Excel sheets, and instructional videos." />
+  <style>
+    :root{
+      --wintec-black: #0B0C0C;      /* deep near-black */
+      --wintec-gold: #FDB913;       /* Wintec gold */
+      --text: #F6F7F9;              /* high-contrast text */
+      --muted: #C9CDD3;
+      --card: #151719;
+      --card-2: #1B1E22;
+      --stroke: #2A2F35;
+      --focus: #7CC4FF;
+      --shadow: 0 12px 28px rgba(0,0,0,.24), 0 2px 4px rgba(0,0,0,.18);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-lg: 22px;
+      --maxw: 1200px;
+    }
+    /* Base */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: linear-gradient(180deg, #0b0c0c 0%, #0f1113 100%);
+    }
+    a{ color: var(--wintec-gold); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+    img{ max-width: 100%; display: block; }
+    .container{ width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+    .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;}
+    .skip-link:focus { left: 16px; top: 16px; width: auto; height: auto; padding: 10px 14px; background:#fff; color:#000; border-radius: 8px;}
+    /* Header */
+    header{
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: rgba(11,12,12,.7);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav{
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .brand{
+      display: inline-flex; align-items: center; gap: 12px; font-weight: 700;
+      letter-spacing: .3px; color: var(--text);
+    }
+    .brand-badge{
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--wintec-gold); display: grid; place-items:center;
+      color:#111; font-weight:800;
+    }
+    .nav-links a{
+      margin-left: 18px; color: var(--muted);
+    }
+    .nav-links a:hover{ color: var(--text); }
+    /* Hero */
+    .hero{
+      padding: 64px 0 24px;
+      border-bottom: 1px solid var(--stroke);
+    }
+    .hero-wrap{ display: grid; gap: 18px; }
+    .kicker{
+      display:inline-block; padding: 6px 10px; border-radius: 999px;
+      background: rgba(253,185,19,.15); color: var(--wintec-gold);
+      font-size: 13px; letter-spacing:.3px;
+    }
+    h1{ font-size: clamp(28px, 4vw, 42px); margin: 8px 0 0; line-height:1.15; }
+    .sub{ color: var(--muted); max-width: 65ch; }
+    /* Sections */
+    section{ padding: 40px 0; }
+    .section-title{ display:flex; align-items:center; gap: 10px; margin-bottom: 14px; }
+    .section-title h2{ margin:0; font-size: clamp(22px, 3vw, 28px); }
+    .badge{
+      background: var(--card-2); color: var(--muted);
+      border: 1px solid var(--stroke); padding: 6px 10px; border-radius: 999px; font-size: 13px;
+    }
+    /* Cards/Grid */
+    .grid{
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .col-4 { grid-column: span 12; }
+    .col-6 { grid-column: span 12; }
+    .col-3 { grid-column: span 12; }
+    @media (min-width: 720px){
+      .col-6 { grid-column: span 6; }
+      .col-4 { grid-column: span 4; }
+      .col-3 { grid-column: span 3; }
+    }
+    .card{
+      background: linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      display:flex; gap: 14px; align-items:flex-start;
+    }
+    .card .icon{
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(253,185,19,.12);
+      display:grid; place-items:center; color: var(--wintec-gold); font-size: 20px; flex-shrink:0;
+      border: 1px solid rgba(253,185,19,.35);
+    }
+    .card h3{ margin: 2px 0 4px; font-size: 18px; }
+    .meta{ font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+    .btn-row{ display:flex; gap: 10px; flex-wrap: wrap; }
+    .btn{
+      display:inline-flex; align-items:center; gap: 8px;
+      padding: 8px 12px; border-radius: 10px; border: 1px solid var(--stroke);
+      background: #0f1215; color: var(--text); text-decoration:none; font-weight:600;
+    }
+    .btn.gold{ background: var(--wintec-gold); color: #111; border-color: #b98700; }
+    .btn:hover{ transform: translateY(-1px); }
+    /* Video embeds */
+    .video{
+      aspect-ratio: 16/9;
+      width: 100%; border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      overflow: hidden; background: #000;
+    }
+    iframe{ width:100%; height:100%; border:0; }
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--stroke);
+      color: var(--muted);
+      padding: 28px 0 48px; margin-top: 18px;
+    }
+    /* Focus states */
+    a, button, .btn { outline: none; }
+    a:focus, .btn:focus { box-shadow: 0 0 0 3px var(--focus); border-radius: 10px; }
+    @media (prefers-reduced-motion: reduce){
+      *{ transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true">W</div>
+        <span>Wintec • SPHP604 E-Portfolio</span>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#docs">Documents</a>
+        <a href="#excels">Excel</a>
+        <a href="#videos">Videos</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-wrap"> 
+        <h1>SPHP604 Advanced Exercise programming</h1>
+        <p class="sub">
+         This E-portfolio showcases my abilities to analyse and diagnose atheltes through movement screen analysis, provide an effective and scientifically backed workout routine for a high level athlete and provide an effective warm up, cooldown and recovery routine. As well as this, I have showcased coaching skills by describing and displaying several high level olympic lifts.  
+        </p>
+        <div class="btn-row">
+          <a class="btn gold" href="#docs">View Documents</a>
+          <a class="btn" href="#videos">Jump to Videos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCUMENTS -->
+    <section id="docs">
+      <div class="container">
+        <div class="section-title">
+          <h2>Documents</h2><span class="badge">PDF / Word</span>
+        </div>
+
+        <div class="grid">
+          <!-- MCS Analysis -->
+          <article class="card col-4">
+            <div class="icon" aria-hidden="true">📄</div>
+            <div>
+              <h3>MCS Analysis — Documents</h3>
+              <div class="meta">Multiple files (PDF/Word)</div>
+              <div class="btn-row">
+                <!-- Replace href with your actual links -->
+                <a class="btn gold" href="https://1drv.ms/w/c/bc5d1d438d9d5ace/ETl-e1T6f2VFgCC0bIPynfEBnMXqTXqHWQWaA0BYIn-NKg?e=G5vyHH" target="_blank" rel="noopener">Open MCS 1</a>
+<a class="btn gold" href="https://1drv.ms/w/c/bc5d1d438d9d5ace/EQMbV9MjS5pGpclHL-luK1sBA0pfAN_78mqhwQzgFSu6EA?e=hwr6jR" target="_blank" rel="noopener">Open MCS 2</a>
+<a class="btn gold" href="https://1drv.ms/w/c/bc5d1d438d9d5ace/EXmL1D20Iv9JuUyMmwbg9PkBhVHNDK3xEzdmmt8xgsFBKA?e=VwYtTj" target="_blank" rel="noopener">Open MCS 3</a>
+
+                              </div>
+            </div>
+          </article>
+
+          <!-- Gameday Preparation -->
+          <article class="card col-4">
+            <div class="icon" aria-hidden="true">🏟️</div>
+            <div>
+              <h3>Gameday Preparation Plan</h3>
+              <div class="meta">Warm-up • Warm-down • Recovery</div>
+              <div class="btn-row">
+                <a class="btn gold" href="https://1drv.ms/w/c/bc5d1d438d9d5ace/EW8CxjLaGHdMlv1fpBBvs2QBFXdt4RJ_cS7KfeIPztY1vw?e=QHjZAe" target="_blank" rel="noopener">Open</a>
+                              </div>
+            </div>
+          </article>
+
+          <!-- Case Study -->
+          <article class="card col-4">
+            <div class="icon" aria-hidden="true">📚</div>
+            <div>
+              <h3>Case Study — Claire (S&C Program)</h3>
+              <div class="meta">Justification</div>
+              <div class="btn-row">
+                <a class="btn gold" href="https://1drv.ms/w/c/bc5d1d438d9d5ace/EUZ0JiDgrMFCucug8HO-cjwBNayIjk-q--171Tom3JQCew?e=VLgmVo" target="_blank" rel="noopener">Open</a>
+                              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCEL SHEETS -->
+    <section id="excels">
+      <div class="container">
+        <div class="section-title">
+          <h2>Excel Sheets</h2><span class="badge">XLSX</span>
+        </div>
+        <div class="grid">
+          <!-- Fitness Testing Battery -->
+          <article class="card col-6">
+            <div class="icon" aria-hidden="true">📊</div>
+            <div>
+              <h3>Fitness Testing Battery</h3>
+              <div class="meta"></div>
+              <div class="btn-row">
+                <a class="btn gold" href="https://1drv.ms/x/c/bc5d1d438d9d5ace/EatbrMjS6x1FiYprYCHtsXwB-rVa7toZoJxYqZRye56LMQ?e=4URVnx" target="_blank" rel="noopener">Open</a>
+                
+              </div>
+            </div>
+          </article>
+
+          <!-- 8-Week Program & 10-Week Periodised Plan -->
+          <article class="card col-6">
+            <div class="icon" aria-hidden="true">📅</div>
+            <div>
+              <h3>8-Week S&C Program (8 tabs) & 10-Week Periodised Plan (1 tab) </h3>
+              <div class="meta"></div>
+              <div class="btn-row">
+                <a class="btn gold" href="https://1drv.ms/x/c/bc5d1d438d9d5ace/EfKonUYstipHrdA0S3iFPSMBhDUNQbrFaxdROqVTGGBJfg?e=Zv8E0x" target="_blank" rel="noopener">Open</a>
+                
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos">
+      <div class="container">
+        <div class="section-title">
+          <h2>Instructional Videos</h2><span class="badge">YouTube (5)</span>
+        </div>
+
+        <div class="grid">
+          <!-- Replace the src with your YouTube links (either youtu.be/ID or youtube.com/watch?v=ID). -->
+          <!-- Tip: If you only have share links, paste them. The page transforms them with a tiny script below. -->
+          <article class="card col-6">
+            <div class="icon" aria-hidden="true">🎥</div>
+            <div style="width:100%;">
+              <h3>Video 1 — Overhead Squat</h3>
+              <div class="video">
+                <iframe data-youtube="https://youtu.be/NOO89aYtgVQ" title="Overhead Squat" allowfullscreen></iframe>
+              </div>
+            </div>
+          </article>
+
+          <article class="card col-6">
+            <div class="icon" aria-hidden="true">🎥</div>
+            <div style="width:100%;">
+              <h3>Video 2 — Snatch Clean</h3>
+              <div class="video">
+                <iframe data-youtube="https://youtu.be/mlfqrweAaMw" title="Snatch Clean" allowfullscreen></iframe>
+              </div>
+            </div>
+          </article>
+
+          <article class="card col-6">
+            <div class="icon" aria-hidden="true">🎥</div>
+            <div style="width:100%;">
+              <h3>Video 3 — Hang Snatch</h3>
+              <div class="video">
+                <iframe data-youtube="https://youtu.be/efQQttLWIxU" title="Hang Snatch" allowfullscreen></iframe>
+              </div>
+            </div>
+          </article>
+
+          <article class="card col-6">
+            <div class="icon" aria-hidden="true">🎥</div>
+            <div style="width:100%;">
+              <h3>Video 4 — Push Press</h3>
+              <div class="video">
+                <iframe data-youtube="https://youtu.be/nBq6D_I-JJA" title="Push Press" allowfullscreen></iframe>
+              </div>
+            </div>
+          </article>
+
+          <article class="card col-6">
+            <div class="icon" aria-hidden="true">🎥</div>
+            <div style="width:100%;">
+              <h3>Video 5 — Split Jerk</h3>
+              <div class="video">
+                <iframe data-youtube="https://youtu.be/zvWA1qtrRqQ" title="Split Jerk" allowfullscreen></iframe>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / HOW-TO -->
+    <section id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>About & Contacts</h2><span class="badge">Quick guide</span>
+        </div>
+        <div class="card">
+          <div class="icon" aria-hidden="true">💡</div>
+          <div>
+            <h3>Contact me</h3>
+            <ol>
+              Email: ryanhindman16@gmail.com            </ol>
+                                </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+     </footer>
+
+  <script>
+    // Replace simple youtu.be or watch?v links with proper embed URLs automatically
+    function toEmbed(url){
+      try{
+        const u = new URL(url);
+        if(u.hostname.includes('youtu.be')){ return 'https://www.youtube.com/embed/' + u.pathname.slice(1); }
+        if(u.hostname.includes('youtube.com')){
+          const id = u.searchParams.get('v');
+          if(id) return 'https://www.youtube.com/embed/' + id;
+        }
+      }catch(e){}
+      return url; // fallback (in case you already pasted embed URLs)
+    }
+    document.querySelectorAll('iframe[data-youtube]').forEach((el)=>{
+      const raw = el.getAttribute('data-youtube');
+      el.src = toEmbed(raw);
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
